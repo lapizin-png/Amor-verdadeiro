@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verdadeiro Amor 💙</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #252036;
+      color: #ffffff;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      font-weight: 300;
+    }
+
+    .cover {
+      min-height: 80vh;
+      background-image: url("f9.webp");
+      background-size: 50% auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: grayscale(20%);
+    }
+
+    .quote {
+      font-size: 1.4rem;
+      max-width: 500px;
+    }
+
+    img {
+      max-width: 30%;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.6);
+      margin-top: 20px;
+    }
+
+    .duas-fotos {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .duas-fotos img {
+      width: 30%;
+    }
+
+    /* ANIMAÇÕES */
+    .fade,
+    .swipe {
+      opacity: 0;
+      transition: all 0.9s ease;
+    }
+
+    .fade {
+      transform: translateY(20px);
+    }
+
+    .swipe {
+      transform: translateX(40px);
+    }
+
+    .show {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .duas-fotos img:nth-child(even) {
+      transform: translateX(-40px);
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="cover">
+  <h1 class="fade">Natan & Giovanna</h1>
+  <p class="fade">15/07/25</p>
+  <p class="quote fade">“E o motivo é você, sempre foi você.”</p>
+</section>
+
+<section>
+  <h2 class="fade">O começo</h2>
+  <p class="fade">Nada foi ensaiado. Nada foi forçado. Só aconteceu, tipo um abraço apertado.</p>
+  <img src="f1.jpg" class="swipe" alt="um abraço apertado" />
+</section>
+
+<section>
+  <h2 class="fade">A gente sendo a gente</h2>
+  <p class="fade">Uma virada de ano conturbada, sem pose. Só conforto.</p>
+  <img src="f2.jpg" class="swipe" alt="uma virada de ano conturbada" />
+</section>
+
+<section>
+  <h2 class="fade">Mas sempre sorrindo juntos</h2>
+  <p class="fade">Mesmo no caos, a gente se encontra.</p>
+  <img src="f3.jpg" class="swipe" alt="Mas sempre sorrindo juntos" />
+</section>
+
+<section>
+  <h2 class="fade">Intimidade simples</h2>
+  <p class="fade">Tipo sair de roupinhas combinando.</p>
+  <img src="f4.jpg" class="swipe" alt="Saindo de roupinhas combinando" />
+</section>
+
+<section>
+  <h2 class="fade">A gente se entende sem dizer uma palavra</h2>
+  <p class="fade">Todo dia. Sem pressa. Juntos.</p>
+  <img src="f5.jpg" class="swipe" alt="A gente se entende sem dizer uma palavra" />
+</section>
+
+<section>
+  <h2 class="fade">Obrigado por ser você</h2>
+  <p class="fade">Por cada sorriso, cada abraço, cada momento.</p>
+
+  <div class="duas-fotos">
+    <img src="f6.jpg" class="swipe" alt="Momento 1" />
+    <img src="f7.jpg" class="swipe" alt="Momento 2" />
+  </div>
+</section>
+
+<!-- ÁUDIO -->
+<audio id="musica" loop>
+  <source src="beija-flor.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById("musica");
+
+  document.addEventListener("click", () => {
+    audio.play().catch(() => {});
+  }, { once: true });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll(".fade, .swipe")
+    .forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
+
